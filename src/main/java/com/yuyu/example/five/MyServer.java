@@ -1,4 +1,4 @@
-package com.yuyu.example.three;
+package com.yuyu.example.five;
 
 import com.yuyu.example.four.MyServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
@@ -9,7 +9,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
-public class MyCharServer {
+public class MyServer {
 
     public static void main(String[] args) throws InterruptedException {
         EventLoopGroup boosGroup = null;
@@ -20,7 +20,8 @@ public class MyCharServer {
 
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(boosGroup, workGroup).channel(NioServerSocketChannel.class)
-                    .childHandler(new MyServerInitializer());
+                    .handler(new LoggingHandler(LogLevel.INFO))
+                    .childHandler(new MyWebSocketInitializer());
             ChannelFuture future = bootstrap.bind(9000).sync();
             future.channel().closeFuture().sync();
         }finally {

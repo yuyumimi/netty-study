@@ -1,6 +1,6 @@
-package com.yuyu.example.three;
+package com.yuyu.example.four;
 
-import com.yuyu.example.four.MyServerInitializer;
+import com.yuyu.example.five.MyWebSocketInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
@@ -9,7 +9,9 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
-public class MyCharServer {
+import java.net.InetSocketAddress;
+
+public class MyServer {
 
     public static void main(String[] args) throws InterruptedException {
         EventLoopGroup boosGroup = null;
@@ -20,8 +22,9 @@ public class MyCharServer {
 
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(boosGroup, workGroup).channel(NioServerSocketChannel.class)
+                    .handler(new LoggingHandler(LogLevel.INFO))
                     .childHandler(new MyServerInitializer());
-            ChannelFuture future = bootstrap.bind(9000).sync();
+            ChannelFuture future = bootstrap.bind(new InetSocketAddress(9000)).sync();
             future.channel().closeFuture().sync();
         }finally {
             boosGroup.shutdownGracefully();
