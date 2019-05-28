@@ -9,7 +9,7 @@
 <form>
 
     <textarea name="msg" style="width: 400px;height: 200px"></textarea>
-    <input type="button" value="send" onclick="">
+    <input type="button" value="send" onclick="send(this.form.msg.value)">
     <h1>服务器响应</h1>
     <textarea id="server" style="width: 400px;height: 300px"></textarea>
     <input type="button" value="clear" onclick="javascript:document.getElementById('server').value=''"/>
