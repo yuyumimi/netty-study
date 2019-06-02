@@ -1,0 +1,17 @@
+syntax = "proto2";
+package com.yuyu.protobuf;
+option optimize_for = SPEED;
+//包名
+option java_package = "com.yuyu.protobuf";
+//源文件类名
+option java_outer_classname = "DataInfo";
+
+// class Student
+message Student {
+    //required 必须设置（不能为null）
+    required string name = 1;
+    //int32 对应java中的int
+    required int32 age = 2;
+    //optional 可以为空
+    optional string address = 3;
+}

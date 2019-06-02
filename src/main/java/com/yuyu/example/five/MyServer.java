@@ -1,6 +1,5 @@
 package com.yuyu.example.five;
 
-import com.yuyu.example.four.MyServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;

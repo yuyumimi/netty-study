@@ -1,6 +1,6 @@
 package com.yuyu.example.four;
 
-import com.yuyu.example.five.MyWebSocketInitializer;
+import com.yuyu.example.three.MyCharServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
@@ -23,7 +23,7 @@ public class MyServer {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(boosGroup, workGroup).channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new MyServerInitializer());
+                    .childHandler(new MyCharServerInitializer());
             ChannelFuture future = bootstrap.bind(new InetSocketAddress(9000)).sync();
             future.channel().closeFuture().sync();
         }finally {
